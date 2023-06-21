@@ -5,6 +5,7 @@ class Addcontact extends React.Component {
     name: "",
     email: "",
   };
+
   add = (e) =>{
     e.preventDefault()
     if(this.state.name === '' || this.state.email === ''){
@@ -12,7 +13,7 @@ class Addcontact extends React.Component {
         return
     }
     this.props.addContactHandler(this.state);
-    this.setState({name:'',email:''})
+    this.setState({name:'',email:''}); 
   }
 
   render() {
@@ -21,8 +22,9 @@ class Addcontact extends React.Component {
         <h2>Add Contact</h2>
         <form className="ui form" onSubmit={this.add}>
           <div className="field">
-            <label>Name</label>
+            <label htmlFor="name">Name</label>
             <input
+            id="name"
               type="text"
               name="name"
               placeholder="name"
@@ -31,8 +33,9 @@ class Addcontact extends React.Component {
             />
           </div>
           <div className="field">
-            <label>Email</label>
+            <label htmlFor="email">Email</label>
             <input
+            id="email"  
               type="text"
               name="email"
               placeholder="email"
@@ -40,7 +43,7 @@ class Addcontact extends React.Component {
               value={this.state.email}
             />
           </div>
-          <button className="ui button blue">Add</button>
+          <button className="ui button blue" type="submit">Add</button>
         </form>
       </div>
     );
