@@ -13,7 +13,7 @@ function App() {
   const [contact, setContact] = useState(()=>{
     return JSON.parse(localStorage.getItem(LOCAL_STORE_KEY)) || {
       name: '',
-      email: ''
+      email: '',
     }
   });
 
