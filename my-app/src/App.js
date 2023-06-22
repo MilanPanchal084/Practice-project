@@ -10,7 +10,12 @@ import { BrowserRouter as Router, Switch, Route, Routes } from "react-router-dom
 function App() {
   const LOCAL_STORE_KEY = "contacts";
 
-  const [contact, setContact] = useState([]);
+  const [contact, setContact] = useState(()=>{
+    return JSON.parse(localStorage.getItem(LOCAL_STORE_KEY)) || {
+      name: '',
+      email: ''
+    }
+  });
 
   const addContactHandler = (cont) => {
     setContact([...contact, { id: uuid(), ...cont }]);
@@ -23,10 +28,10 @@ function App() {
     setContact(newContactList);
   };
 
-  useEffect(() => {
-    const retrievcontacts = JSON.parse(localStorage.getItem(LOCAL_STORE_KEY));
-    setContact(retrievcontacts);
-  }, []);
+  // useEffect(() => {
+  //   const retrievcontacts = JSON.parse(localStorage.getItem(LOCAL_STORE_KEY));
+  //   setContact(retrievcontacts);
+  // }, []);
 
   useEffect(() => {
     localStorage.setItem(LOCAL_STORE_KEY, JSON.stringify(contact));
